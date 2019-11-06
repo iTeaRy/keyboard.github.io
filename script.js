@@ -236,8 +236,8 @@ function handle(e) {
   }
 }
 window.onbeforeunload = function() {
-  localStorage.setItem('lang', keyBoard.lang ? keyBoard.lang : 'eng');
+  localStorage.setItem('lang', !!keyBoard.lang ? keyBoard.lang : 'eng');
 };
 
-keyBoard.lang = localStorage.getItem('lang') ? localStorage.getItem('lang') : 'eng';
-document.body.onload = draw(keyBoard.lang ? keyBoard.lang : 'eng', 0);
+keyBoard.lang = !!localStorage.getItem('lang') ? localStorage.getItem('lang') : 'eng';
+document.body.onload = draw(!!keyBoard.lang ? keyBoard.lang : 'eng', 0);
