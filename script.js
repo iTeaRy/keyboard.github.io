@@ -1,5 +1,5 @@
 let keyBoard = {
-  language: 'eng',
+  lang: 'eng',
   shiftClick: false,
   altClick: false,
   capsClick: false,
@@ -35,13 +35,13 @@ const smart = {
 }
 document.body.innerHTML = `<textarea value=""></textarea><div class="keyboard"></div>`;
 let keyBoardArea = document.querySelector('.keyboard');
-function draw(language, smartkey) {
-  console.log('language', language);
+function draw(lang, smartkey) {
+  console.log('lang', lang);
   console.log('keyBoard', keyBoard);
   console.log('localStorage', localStorage);
   let strToDrow = "";
-  for (let i = 0; i < keyBoard[language].length; i++) {
-    let rows = keyBoard[language][i];
+  for (let i = 0; i < keyBoard[lang].length; i++) {
+    let rows = keyBoard[lang][i];
     strToDrow += `<div class="keyboard__row">`;
     for (let r = 0; r < rows.length; r++) {
       let symbol = rows[r][smartkey];
@@ -116,7 +116,7 @@ function smartWriter(key) {
 
 function clickShift() {
   keyBoard.shiftClick = !keyBoard.shiftClick;
-  draw(keyBoard.language, keyBoard.shiftClick ? 1 : 0);
+  draw(keyBoard.lang, keyBoard.shiftClick ? 1 : 0);
   if (keyBoard.shiftClick && keyBoard.capsClick){
     clickCapsLock(true);
   }
@@ -139,8 +139,8 @@ function clickShift() {
     });
   }
   if (keyBoard.altClick && keyBoard.shiftClick) {
-    keyBoard.language = reverseLanguage(keyBoard.language);
-    draw(keyBoard.language, 0);
+    keyBoard.lang = reverseLanguage(keyBoard.lang);
+    draw(keyBoard.lang, 0);
   }
   if (keyBoard.shiftClick) setTimeout(() => {
     if (keyBoard.capsClick) {
@@ -199,15 +199,15 @@ function clickAlt() {
     });
   }
   if (keyBoard.altClick && keyBoard.shiftClick) {
-    keyBoard.language = reverseLanguage(keyBoard.language);
-    draw(keyBoard.language, 0);
+    keyBoard.lang = reverseLanguage(keyBoard.lang);
+    draw(keyBoard.lang, 0);
   }
    if (keyBoard.altClick) {
      setTimeout(() => clickAlt(), 1000);
    }
 }
-function reverseLanguage(language) {
-  return language === 'eng' ? 'rus' : 'eng';
+function reverseLanguage(lang) {
+  return lang === 'eng' ? 'rus' : 'eng';
 }
 function highlight(key) {
       let selectedKey = key;
@@ -236,8 +236,8 @@ function handle(e) {
   }
 }
 window.onbeforeunload = function() {
-  localStorage.setItem('lang', keyBoard.language);
+  localStorage.setItem('lang', keyBoard.lang ? keyBoard.lang : 'eng');
 };
 
-keyBoard.language = localStorage.getItem('lang') ? localStorage.getItem('lang') : 'eng';
-document.body.onload = draw(keyBoard.language ? keyBoard.language : 'eng', 0);
+keyBoard.lang = localStorage.getItem('lang') ? localStorage.getItem('lang') : 'eng';
+document.body.onload = draw(keyBoard.lang ? keyBoard.lang : 'eng', 0);
