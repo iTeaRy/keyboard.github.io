@@ -35,7 +35,7 @@ const smart = {
 }
 document.body.innerHTML = `<textarea value=""></textarea><div class="keyboard"></div>`;
 let keyBoardArea = document.querySelector('.keyboard');
-function draw (language, smartkey) {
+function draw(language, smartkey) {
   console.log('language', language);
   console.log('keyBoard', keyBoard);
   let strToDrow = "";
@@ -63,7 +63,7 @@ function draw (language, smartkey) {
   });
 }
 
-function writer () {
+function writer() {
   highlight(this);
   if (smart[this.getAttribute('value')]) {
     smartWriter(this.getAttribute('value'));
@@ -76,7 +76,7 @@ function writer () {
        }
       }
     }
-function smartWriter (key) {
+function smartWriter(key) {
   switch(key){
     case "Shift": {
       clickShift();
@@ -113,7 +113,7 @@ function smartWriter (key) {
   }
 }
 
-function clickShift () {
+function clickShift() {
   keyBoard.shiftClick = !keyBoard.shiftClick;
   draw(keyBoard.language, keyBoard.shiftClick ? 1 : 0);
   if (keyBoard.shiftClick && keyBoard.capsClick){
@@ -156,7 +156,7 @@ function clickShift () {
   }, 3000);
 }
 
-function clickCapsLock (withoutAnimation) {
+function clickCapsLock(withoutAnimation) {
   if (!withoutAnimation) {
     keyBoard.capsClick = !keyBoard.capsClick;
   }
@@ -218,7 +218,7 @@ function highlight(key) {
       }, 100);
 }
 
-document.onkeydown  = document.onkeypress  = handle;
+document.onkeydown = document.onkeypress = handle;
 
 function handle(e) {
   document.querySelector("textarea").focus();
@@ -235,7 +235,7 @@ function handle(e) {
   }
 }
 window.onbeforeunload = function() {
-  localStorage.setItem("lang", keyBoard.language);
+  localStorage.setItem('lang', keyBoard.language);
 };
 
 keyBoard.language = localStorage.getItem('lang') ? localStorage.getItem('lang') : 'eng';
