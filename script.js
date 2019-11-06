@@ -1,5 +1,5 @@
 const keyBoard={};
-keyBoard.language ="eng";
+keyBoard.language = "eng";
 keyBoard.shiftClick = false;
 keyBoard.altClick = false;
 keyBoard.capsClick = false;
@@ -232,8 +232,8 @@ function handle(e) {
   }
 }
 window.onbeforeunload = function() {
-  localStorage.setItem("lang",keyBoard.language);
+  localStorage.setItem("lang", keyBoard.language);
 };
 
-keyBoard.language = localStorage.getItem("lang");
+keyBoard.language = localStorage.getItem('lang') ? localStorage.getItem('lang') : 'eng';
 document.body.onload = draw(keyBoard.language, 0);
