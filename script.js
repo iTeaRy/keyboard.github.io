@@ -36,9 +36,6 @@ const smart = {
 document.body.innerHTML = `<textarea value=""></textarea><div class="keyboard"></div>`;
 let keyBoardArea = document.querySelector('.keyboard');
 function draw(lang, smartkey) {
-  console.log('lang', lang);
-  console.log('keyBoard', keyBoard);
-  console.log('localStorage', localStorage);
   let strToDrow = "";
   for (let i = 0; i < keyBoard[lang].length; i++) {
     let rows = keyBoard[lang][i];
@@ -143,6 +140,10 @@ function clickShift() {
     draw(keyBoard.lang, 0);
   }
   if (keyBoard.shiftClick) setTimeout(() => {
+    draw(keyBoard.lang, 0);
+    if (keyBoard.shiftClick && keyBoard.capsClick){
+      clickCapsLock(true);
+    }
     if (keyBoard.capsClick) {
       document.querySelector(".keyboard").classList.remove('simple-low');
       document.querySelector(".keyboard").classList.add('simple-up');
