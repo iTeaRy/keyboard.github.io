@@ -37,7 +37,8 @@ document.body.innerHTML = `<textarea value=""></textarea><div class="keyboard"><
 let keyBoardArea = document.querySelector('.keyboard');
 function draw(language, smartkey) {
   console.log('language', language);
-  console.log('keyBoard', keyBoard);
+  console.log('language', language);
+  console.log('localStorage', localStorage);
   let strToDrow = "";
   for (let i = 0; i < keyBoard[language].length; i++) {
     let rows = keyBoard[language][i];
