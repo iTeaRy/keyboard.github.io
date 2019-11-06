@@ -240,4 +240,4 @@ window.onbeforeunload = function() {
 };
 
 keyBoard.language = localStorage.getItem('lang') ? localStorage.getItem('lang') : 'eng';
-document.body.onload = draw(keyBoard.language, 0);
+document.body.onload = draw(keyBoard.language ? keyBoard.language : 'eng', 0);
