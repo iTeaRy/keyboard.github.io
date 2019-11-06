@@ -1,0 +1,86 @@
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #03161d;
+  justify-content: space-evenly;
+}
+.keyboard {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.keyboard__row {
+  display: flex;
+}
+.keys {
+  width: 7%;
+  height: 30px;
+  background: gray;
+  margin: 2px;
+  color: black;
+  text-align: center;
+  line-height: 30px;
+  font-size: 15px;
+  border-radius: 2px;
+  cursor: pointer;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.keys_click {
+  background: #045658;
+}
+.smart {
+  width: 14%;
+  text-transform: none;
+}
+.smart_click {
+  background: #ef6101;
+}
+.animation {
+  -webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+          animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+.simple-up {
+  text-transform: uppercase;
+}
+.simple-low {
+  text-transform: lowercase;
+}
+.space {
+  width: 38%;
+}
+.shift {
+  width: 13%;
+}
+.shift:last-child {
+  width:7%;
+}
+textarea {
+  width: 40%;
+  height: 300px;
+  font-size: 20px;
+  background: #fdac07;
+  color: #045658;
+}
+.arrows {
+  width: 9%;
+}
+
+@keyframes scale-up-center {
+  0% {
+    -webkit-transform: scale(0.5);
+            transform: scale(0.5);
+  }
+  100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+}
