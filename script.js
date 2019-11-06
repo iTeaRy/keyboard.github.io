@@ -1,23 +1,24 @@
-const keyBoard={};
-keyBoard.language = "eng";
-keyBoard.shiftClick = false;
-keyBoard.altClick = false;
-keyBoard.capsClick = false;
-keyBoard.rus = [
+let keyBoard = {
+  language: 'eng',
+  shiftClick: false,
+  altClick: false,
+  capsClick: false,
+  rus: [
     [["\u0451", "\u0401"], ["1", "!"], ["2", '"'], ["3", "\u2116"], ["4", ";"], ["5", "%"], ["6", ":"], ["7", "?"], ["8", "*"], ["9", "("], ["0", ")"], ["-", "_"], ["=", "+"], ["Backspace", "Backspace"]],
     [["Tab", "Tab"], ["\u0439", "\u0419"], ["\u0446", "\u0426"], ["\u0443", "\u0423"], ["\u043A", "\u041A"], ["\u0435", "\u0415"], ["\u043D", "\u041D"], ["\u0433", "\u0413"], ["\u0448", "\u0428"], ["\u0449", "\u0429"], ["\u0437", "\u0417"], ["\u0445", "\u0425"], ["\u044A", "\u042A"], ["\\", "/"]],
     [["CapsLock", "CapsLock"], ["\u0444", "\u0424"], ["\u044B", "\u042B"], ["\u0432", "\u0412"], ["\u0430", "\u0410"], ["\u043F", "\u041F"], ["\u0440", "\u0420"], ["\u043E", "\u041E"], ["\u043B", "\u041B"], ["\u0434", "\u0414"], ["\u0436", "\u0416"], ["\u044D", "\u042D"], ["Enter", "Enter"]],
     [["Shift", "Shift"], ["\u044F", "\u042F"], ["\u0447", "\u0427"], ["\u0441", "\u0421"], ["\u043C", "\u041C"], ["\u0438", "\u0418"], ["\u0442", "\u0422"], ["\u044C", "\u042C"], ["\u0431", "\u0411"], ["\u044E", "\u042E"], [".", ","], ["ArrowUp", "ArrowUp"],["Shift", "Shift"]],
     [["Control", "Control"], ["Win", "Win"], ["Alt", "Alt"], ["Space", "Space"], ["Alt", "Alt"], ["ArrowLeft", "ArrowLeft"], ["ArrowDown", "ArrowDown"], ["ArrowRight", "ArrowRight"]]
-  ];
-keyBoard.eng =[
+  ],
+  eng: [
     [["`", "~"], ["1", "!"], ["2", "@"], ["3", "#"], ["4", "$"], ["5", "%"], ["6", "^"], ["7", "&"], ["8", "*"], ["9", "("], ["0", ")"], ["-", "_"], ["=", "+",], ["Backspace", "Backspace"]],
     [["Tab", "Tab"], ["q", "Q"], ["w", "W"], ["e", "E"], ["r", "R"], ["t", "T"], ["y", "Y"], ["u", "U"], ["i", "I"], ["o", "O"], ["p", "P"], ["[", "{"], ["]", "}"],  ["\\", "|"]],
     [["CapsLock", "CapsLock"], ["a", "A"], ["s", "S"], ["d", "D"], ["f", "F"], ["g", "G"], ["h", "H"], ["j", "J"], ["k", "K"], ["l", "L"], [";", ":"], ["'", '"'], ["Enter", "Enter"]],
     [["Shift", "Shift"], ["z", "Z"], ["x", "X"], ["c", "C"], ["v", "V"], ["b", "B"], ["n", "N"], ["m", "M"], [",", "<"], [".", ">"], ["/", "?"], ["ArrowUp", "ArrowUp"], ["Shift", "Shift"]],
     [["Control", "Control"], ["Win", "Win"], ["Alt", "Alt"], ["Space", "Space"], ["Alt", "Alt"], ["ArrowLeft", "ArrowLeft"], ["ArrowDown", "ArrowDown"], ["ArrowRight", "ArrowRight"]]
-  ];
-  const smart = {
+  ]
+};
+const smart = {
     Backspace: true,
     Tab: true,
     CapsLock: true,
@@ -31,35 +32,35 @@ keyBoard.eng =[
     "ArrowDown": "\u2193",
     "ArrowLeft": "\u2190",
     "ArrowRight": "\u2192"
-  }
+}
 document.body.innerHTML = `<textarea value=""></textarea><div class="keyboard"></div>`;
 let keyBoardArea = document.querySelector('.keyboard');
 function draw (language, smartkey) {
   console.log('language', language);
   console.log('keyBoard', keyBoard);
-    let strToDrow = "";
-    for (let i = 0; i < keyBoard[language].length; i++) {
-        let rows = keyBoard[language][i];
-        strToDrow += `<div class="keyboard__row">`;
-        for (let r = 0; r < rows.length; r++) {
-          let symbol = rows[r][smartkey];
+  let strToDrow = "";
+  for (let i = 0; i < keyBoard[language].length; i++) {
+    let rows = keyBoard[language][i];
+    strToDrow += `<div class="keyboard__row">`;
+    for (let r = 0; r < rows.length; r++) {
+      let symbol = rows[r][smartkey];
 
-          if (smart[symbol]) {
-            if (smart[symbol]==="\u2191"||smart[symbol]==="\u2193"||smart[symbol]==="\u2190"||smart[symbol]==="\u2192") {
-               strToDrow += `<div class="keys smart arrows ${symbol.toLowerCase()}" value="${symbol}">${smart[symbol]}</div>`;
-             } else {
-               strToDrow += `<div class="keys smart  ${symbol.toLowerCase()}" value="${symbol}">${symbol}</div>`;
-             }
-          } else {
-            strToDrow += `<div class="keys simple" value="${symbol}">${symbol}</div>`;
-          }
+      if (smart[symbol]) {
+        if (smart[symbol]==="\u2191"||smart[symbol]==="\u2193"||smart[symbol]==="\u2190"||smart[symbol]==="\u2192") {
+          strToDrow += `<div class="keys smart arrows ${symbol.toLowerCase()}" value="${symbol}">${smart[symbol]}</div>`;
+        } else {
+          strToDrow += `<div class="keys smart  ${symbol.toLowerCase()}" value="${symbol}">${symbol}</div>`;
         }
-        strToDrow += `</div>`;
+      } else {
+        strToDrow += `<div class="keys simple" value="${symbol}">${symbol}</div>`;
+      }
     }
-      keyBoardArea.innerHTML = strToDrow;
-      document.querySelectorAll('.keys').forEach(function (element) {
-          element.onclick = writer;
-        });
+    strToDrow += `</div>`;
+  }
+  keyBoardArea.innerHTML = strToDrow;
+  document.querySelectorAll('.keys').forEach(function (element) {
+    element.onclick = writer;
+  });
 }
 
 function writer () {
